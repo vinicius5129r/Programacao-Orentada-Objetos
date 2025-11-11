@@ -32,6 +32,7 @@ public class Circulo {
     //método para exibir os resultados do círculo
     public void ResultadosCirculo() {
         //formatação da saída dos resultados
+        System.out.println("\n----- Círculo -----");
         System.out.format("Raio: %.1f\nArea: %.1f\nPerímetro: %.1f\n", raio, calcularArea(), calcularPerimetro());
     }
     

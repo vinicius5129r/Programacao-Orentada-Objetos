@@ -30,6 +30,7 @@ public class Quadrado {
     //método para exibir os resultados do quadrado
     public void ResultadosQuadrado() {
         //formatação da saída dos resultados
+        System.out.println("----- Quadrado -----");
         System.out.format("Lado: %.1f\nArea: %.1f\nPerímetro: %.1f\n", lado, calcularArea(), calcularPerimetro());
     }
 }

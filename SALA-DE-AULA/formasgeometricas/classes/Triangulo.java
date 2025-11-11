@@ -35,6 +35,7 @@ public class Triangulo {
     //método para exibir os resultados do triângulo
     public void ResultadosTriangulo() {
         //formatação da saída dos resultados
+        System.out.println("\n----- Triângulo -----");
         System.out.format("Base: %.1f\nAltura: %.1f\nLados: %.1f, %.1f, %.1f\nArea: %.1f\nPerímetro: %.1f\n", 
                           base, altura, ladoA, ladoB, ladoC, calcularArea(), calcularPerimetro());
     }
