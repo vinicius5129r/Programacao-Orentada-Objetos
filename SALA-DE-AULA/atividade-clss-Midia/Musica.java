@@ -1,10 +1,12 @@
-public class Musica extends Midia{
+import javax.print.attribute.standard.Media;
+
+public class Musica extends Media{
     private String titulo;
     private String album;
 
     // Construtor
     public Musica(String titulo, String legenda, int duracao, String album) {
-        super(legenda, duracao);
+        super(duracao);
         this.titulo = titulo;
         this.album = album;
     }
