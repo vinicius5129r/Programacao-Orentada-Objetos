@@ -1,63 +1,39 @@
 package apresentacao.classes;
-
-public abstract class Veiculos {
+/**
+ * 1. ABSTRAÇÃO / 3. ENCAPSULAMENTO
+ * * Superclasse abstrata 'Veiculo'.
+ * Define o que todo Veiculo DEVE ter (ligar, desligar)
+ * e o que ele JÁ tem (marca, modelo, exibirDetalhes).
+ * * Atributos são 'protected' para encapsular, mas permitir
+ * acesso às classes filhas.
+ */
+ public abstract class Veiculos {
+    // Atributos encapsulados comuns a todos os Veiculos
+    // protected permite acesso às subclasses e classes 
+    // do mesmo pacote diferente de private que não permite acesso 
+    //nenhum fora da classe mesma
+    protected String marca;
     protected String modelo;
-    protected String marca; 
     protected int ano;
-    protected String cor;
     protected boolean ligado;
 
-    public Veiculos(String modelo, String marca, int ano, String cor, boolean ligado) {
-        this.modelo = modelo;
+    // Construtor que as classes filhas usarão
+    public Veiculos(String marca, String modelo, int ano) {
         this.marca = marca;
+        this.modelo = modelo;
         this.ano = ano;
-        this.cor = cor;
-        this.ligado = ligado;
+        this.ligado = false;
     }
 
-    // Métodos abstratos
+    // --- ABSTRAÇÃO ---
+    // Métodos abstratos (o contrato) que as subclasses devem implementar
     public abstract void ligar();
     public abstract void desligar();
 
-    public String getModelo() {
-        return modelo;
+    // --- HERANÇA ---
+    // Método concreto que será herdado
+    public void exibirDetalhes() {
+        System.out.println("Marca: " + this.marca + ", Modelo: " + this.modelo + ", Ano: " + this.ano);
+        System.out.println("Estado: " + (this.ligado ? "Ligado" : "Desligado"));
     }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public void setCor(String cor) {
-        this.cor = cor;
-    }
-
-    public boolean isLigado() {
-        return ligado;
-    }
-
-    public void setLigado(boolean ligado) {
-        this.ligado = ligado;
-    }
-
-    
 }
