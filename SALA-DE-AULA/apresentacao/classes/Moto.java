@@ -46,7 +46,7 @@ public class Moto extends Veiculo {
     // Método exclusivo da Moto
     public void empinar() {
         if (this.ligado == true) {
-            System.out.println("A " + this.modelo + " está empinando! 🏍️");
+            System.out.println("A " + this.modelo + " está empinando! Woohoo!");
         } else {
             System.out.println("Não dá para empinar com a moto desligada.");
         }

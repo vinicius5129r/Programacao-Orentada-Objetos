@@ -1,61 +1,107 @@
-package apresentacao.classes; // Pacote
+package apresentacao.classes; // Define que esta classe pertence ao pacote 'apresentacao.classes'
 
-// 'extends Veiculo': HERANÇA.
-// O Carro ganha tudo o que Veiculo tem (marca, modelo, etc).
+// A classe Carro herda (extends) tudo o que a classe Veiculo tem
 public class Carro extends Veiculo {
     
-    // Atributo exclusivo de Carro.
-    // 'private': ENCAPSULAMENTO (só a classe Carro mexe aqui).
-    // 'final': O valor não muda depois que o carro é criado.
+    // Atributo 'final': O número de portas é definido na fábrica e não muda mais
     private final int numeroPortas;
+    
+    // Atributo de estado: Variável booleana (true/false) para saber se a mala está aberta
+    // private: Só a classe Carro pode mexer nisso diretamente
+    private boolean portaMalasAberto; 
 
-    // Construtor do Carro
+    // Construtor: O método que cria o objeto Carro na memória
     public Carro(String marca, String modelo, int ano, int numeroPortas) {
-        // 'super(...)': Chama o construtor da classe pai (Veiculo)
-        // para configurar marca, modelo e ano.
+        // super(...): Chama o construtor da classe pai (Veiculo) para configurar marca, modelo e ano
         super(marca, modelo, ano);
         
-        // Configura o atributo que é só do Carro
+        // this.numeroPortas: Guarda o número de portas recebido no atributo da classe
         this.numeroPortas = numeroPortas;
+        
+        // Inicialização: Todo carro novo começa com o porta-malas fechado (false)
+        this.portaMalasAberto = false; 
     }
 
-    // @Override: POLIMORFISMO.
-    // Estamos reescrevendo o método ligar() original para funcionar do jeito do Carro.
+    // @Override: Indica que estamos substituindo o método ligar() original da classe Veiculo
     @Override
     public void ligar() {
-        if (this.ligado == false) { // Se não estiver ligado...
-            this.ligado = true;     // ...muda para ligado
+        // --- PASSO 1: VERIFICAÇÃO DE SEGURANÇA ---
+        
+        // Verifica: "O porta-malas está aberto (true)?"
+        if (this.portaMalasAberto == true) {
+            // Se sim, avisa o usuário que vai fechar sozinho
+            System.out.println("Aviso: O porta-malas estava aberto. Fechando automaticamente...");
+            
+            // Altera o estado do porta-malas para fechado (false)
+            this.portaMalasAberto = false; 
+            
+            // Confirmação visual
+            System.out.println("Porta-malas fechado.");
+        }
+
+        // --- PASSO 2: LIGAR O MOTOR ---
+        
+        // Verifica: "O carro está desligado (false)?"
+        if (this.ligado == false) {
+            // Muda o estado do motor para ligado (true)
+            this.ligado = true;
+            // Imprime mensagem de sucesso
             System.out.println("O " + this.modelo + " (Carro) deu a partida. Vrumm!");
         } else {
+            // Se já estava ligado, avisa o usuário
             System.out.println("O " + this.modelo + " já estava ligado.");
         }
     }
 
-    // Reescrevendo o desligar()
+    // Método para desligar o carro
     @Override
     public void desligar() {
-        if (this.ligado == true) { // Se estiver ligado...
-            this.ligado = false;   // ...muda para desligado
+        // Verifica: "O carro está ligado (true)?"
+        if (this.ligado == true) {
+            // Muda o estado do motor para desligado (false)
+            this.ligado = false;
+            // Imprime mensagem
             System.out.println("O " + this.modelo + " (Carro) foi desligado.");
         } else {
+            // Se já estava desligado, avisa
             System.out.println("O " + this.modelo + " já estava desligado.");
         }
     }
 
-    // @Override no exibirDetalhes:
-    // Queremos mostrar os dados do Veiculo + o número de portas.
+    // --- MÉTODO ESPECÍFICO COM LÓGICA DE SEGURANÇA ---
+    public void abrirPortaMalas() {
+        // Verifica: "O carro está ligado (true)?"
+        if (this.ligado == true) {
+            // SE ESTIVER LIGADO: Não faz nada além de dar bronca.
+            System.out.println("Não é possível abrir o porta-malas com o carro em movimento (ligado)!");
+        } else {
+            // SE ESTIVER DESLIGADO (else): Permite abrir.
+            
+            // Muda o estado do porta-malas para aberto (true)
+            this.portaMalasAberto = true;
+            // Avisa que abriu
+            System.out.println("Porta-malas aberto.");
+        }
+    }
+
+    // Método para exibir todas as informações do carro
     @Override
     public void exibirDetalhes() {
-        super.exibirDetalhes(); // Chama o método do pai (mostra marca, modelo, estado...)
-        System.out.println("Tipo: Carro | Portas: " + this.numeroPortas); // Completa com a info do filho
+        // Chama o método da classe pai para mostrar Marca, Modelo e Ano
+        super.exibirDetalhes();
+        
+        // Mostra o número de portas
+        System.out.println("Tipo: Carro | Portas: " + this.numeroPortas);
+        
+        // Verifica o estado do porta-malas para imprimir o texto correto
+        if (this.portaMalasAberto == true) {
+            System.out.println("Porta-malas: [ABERTO]");
+        } else {
+            System.out.println("Porta-malas: [FECHADO]");
+        }
     }
 
-    // Método exclusivo do Carro (Moto não tem isso)
-    public void abrirPortaMalas() {
-        System.out.println("Porta-malas aberto.");
-    }
-
-    // Getter para ler o atributo privado
+    // Getter: Permite que outras classes leiam o número de portas, mas não alterem
     public int getNumeroPortas() {
         return numeroPortas;
     }
