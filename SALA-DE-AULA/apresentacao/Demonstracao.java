@@ -1,6 +1,6 @@
 package apresentacao; // Pacote principal
 
-// Importando as classes que criamos
+// Importando as classes
 import apresentacao.classes.Carro;
 import apresentacao.classes.Moto;
 import apresentacao.classes.Veiculo;
@@ -9,7 +9,7 @@ import apresentacao.classes.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Demonstracao { // Corrigi o nome (tinha um 's' a mais)
+public class Demonstracao {
 
     // Método main: O ponto de partida do programa
     public static void main(String[] args) {
@@ -45,6 +45,10 @@ public class Demonstracao { // Corrigi o nome (tinha um 's' a mais)
             // Chama o ligar() específico (Vrumm ou Randandandan)
              veiculo.ligar();
 
+            // Ações específicas dependendo do tipo do veículo
+            // Usamos 'instanceof' para verificar o tipo real do objeto
+            // e fazemos um cast para chamar métodos específicos.
+            // o cast é como dizer "Ei Java, eu sei que isso é uma Moto/Carro!"
             if (veiculo instanceof Moto) {
                 ((Moto) veiculo).empinar(); // Se for moto, empina!
             } else if (veiculo instanceof Carro) {

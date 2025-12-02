@@ -36,7 +36,7 @@ public abstract class Veiculo {
         // Imprime os dados comuns a todos os veículos
         System.out.println("Marca: " + this.marca + " | Modelo: " + this.modelo + " | Ano: " + this.ano);
         
-        // Lógica simples com IF/ELSE que você pediu:
+        // Lógica simples para mostrar se está ligado ou desligado
         if (this.ligado == true) {
             System.out.println("Estado: Ligado");
         } else {
