@@ -1,24 +1,23 @@
-package apresentacao.classes;
+package apresentacao.classes; // Pacote
 
-/**
- * HERANÇA / POLIMORFISMO
- * * Subclasse 'Moto' que 'extends' (herda de) Veiculo.
- */
-public class Moto extends Veiculos {
+// 'extends Veiculo': A Moto também é um Veículo.
+public class Moto extends Veiculo {
 
-    // Atributo encapsulado específico de Moto
+    // Atributo exclusivo de Moto (cilindradas)
     private final int cilindradas;
 
+    // Construtor da Moto
     public Moto(String marca, String modelo, int ano, int cilindradas) {
-        // HERANÇA: Chama o construtor da superclasse (Veiculo)
+        // Repassa os dados comuns para a classe pai (Veiculo)
         super(marca, modelo, ano);
+        // Guarda o dado específico da moto
         this.cilindradas = cilindradas;
     }
 
-    // POLIMORFISMO: Implementação específica de ligar()
+    // Implementação específica de como uma Moto liga
     @Override
     public void ligar() {
-        if (!this.ligado) {
+        if (this.ligado == false) {
             this.ligado = true;
             System.out.println("A " + this.modelo + " (Moto) ligou. Randandandan!");
         } else {
@@ -26,10 +25,10 @@ public class Moto extends Veiculos {
         }
     }
 
-    // POLIMORFISMO: Implementação específica de desligar()
+    // Implementação específica de como uma Moto desliga
     @Override
     public void desligar() {
-        if (this.ligado) {
+        if (this.ligado == true) {
             this.ligado = false;
             System.out.println("A " + this.modelo + " (Moto) foi desligada.");
         } else {
@@ -37,13 +36,19 @@ public class Moto extends Veiculos {
         }
     }
 
-    // Método específico da Moto
+    // Sobrescreve para mostrar as cilindradas além do básico
+    @Override
+    public void exibirDetalhes() {
+        super.exibirDetalhes(); // Mostra o básico (marca, modelo...)
+        System.out.println("Tipo: Moto | Cilindradas: " + this.cilindradas + "cc");
+    }
+
+    // Método exclusivo da Moto
     public void empinar() {
-        if (this.ligado) {
-            System.out.println("A " + this.modelo + " de " + this.cilindradas + "cc está empinando! 🏍️");
+        if (this.ligado == true) {
+            System.out.println("A " + this.modelo + " está empinando! 🏍️");
         } else {
             System.out.println("Não dá para empinar com a moto desligada.");
         }
     }
 }
-
