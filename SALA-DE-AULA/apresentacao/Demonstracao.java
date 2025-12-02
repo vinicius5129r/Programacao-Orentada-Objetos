@@ -43,12 +43,21 @@ public class Demonstracao { // Corrigi o nome (tinha um 's' a mais)
             System.out.println("--------------------------------");
 
             // Chama o ligar() específico (Vrumm ou Randandandan)
-            // veiculo.ligar();
+             veiculo.ligar();
 
             if (veiculo instanceof Moto) {
                 ((Moto) veiculo).empinar(); // Se for moto, empina!
             } else if (veiculo instanceof Carro) {
                 ((Carro) veiculo).abrirPortaMalas(); // Se for carro, abre o porta-malas!
+            }
+
+            System.out.println("--------------------------------");
+            veiculo.desligar(); // Desliga o veículo
+            System.out.println("--------------------------------");
+            if (veiculo instanceof Moto) {
+                ((Moto) veiculo).empinar(); // Tenta empinar de novo (deve dar bronca)
+            } else if (veiculo instanceof Carro) {
+                ((Carro) veiculo).abrirPortaMalas(); // Tenta abrir o porta-malas de novo
             }
         }
 
